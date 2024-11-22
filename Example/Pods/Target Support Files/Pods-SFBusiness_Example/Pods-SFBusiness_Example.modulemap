@@ -1,0 +1,6 @@
+framework module Pods_SFBusiness_Example {
+  umbrella header "Pods-SFBusiness_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

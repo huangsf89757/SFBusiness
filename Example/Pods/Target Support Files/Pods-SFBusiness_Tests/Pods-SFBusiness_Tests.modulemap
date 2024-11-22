@@ -1,0 +1,6 @@
+framework module Pods_SFBusiness_Tests {
+  umbrella header "Pods-SFBusiness_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
