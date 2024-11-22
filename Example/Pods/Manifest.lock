@@ -1,27 +1,79 @@
 PODS:
-  - FBSnapshotTestCase (2.1.4):
-    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
-  - FBSnapshotTestCase/Core (2.1.4)
-  - FBSnapshotTestCase/SwiftSupport (2.1.4):
-    - FBSnapshotTestCase/Core
-  - SFBusiness (0.1.0)
+  - IQKeyboardManagerSwift (6.5.16)
+  - Reusable (4.1.2):
+    - Reusable/Storyboard (= 4.1.2)
+    - Reusable/View (= 4.1.2)
+  - Reusable/Storyboard (4.1.2)
+  - Reusable/View (4.1.2)
+  - SFBase (0.1.0):
+    - Then (~> 3.0.0)
+  - SFBusiness (0.1.0):
+    - WCDB.swift
+  - SFExtension (0.1.0)
+  - SFLogger (0.1.0):
+    - SwiftyBeaver
+  - SFUI (0.1.0):
+    - IQKeyboardManagerSwift (~> 6.5.16)
+    - Reusable (~> 4.1.2)
+    - SFBase (~> 0.1.0)
+    - SFExtension (~> 0.1.0)
+    - SFLogger (~> 0.1.0)
+    - SnapKit (~> 5.6.0)
+    - SnapKitExtend (~> 1.1.0)
+  - SnapKit (5.6.0)
+  - SnapKitExtend (1.1.0):
+    - SnapKit
+  - SwiftyBeaver (2.1.1)
+  - Then (3.0.0)
+  - WCDB.swift (2.1.8):
+    - WCDBOptimizedSQLCipher (= 1.4.6)
+  - WCDBOptimizedSQLCipher (1.4.6)
 
 DEPENDENCIES:
-  - FBSnapshotTestCase (~> 2.1.4)
-  - SFBusiness (from `../`)
+  - SFBase (from `../../../Basic/SFBase/`)
+  - SFBusiness (from `../../../Business/SFBusiness/`)
+  - SFExtension (from `../../../Basic/SFExtension/`)
+  - SFLogger (from `../../../Server/SFLogger/`)
+  - SFUI (from `../../../UI/SFUI/`)
 
 SPEC REPOS:
-  trunk:
-    - FBSnapshotTestCase
+  https://github.com/CocoaPods/Specs.git:
+    - IQKeyboardManagerSwift
+    - Reusable
+    - SnapKit
+    - SnapKitExtend
+    - SwiftyBeaver
+    - Then
+    - WCDB.swift
+    - WCDBOptimizedSQLCipher
 
 EXTERNAL SOURCES:
+  SFBase:
+    :path: "../../../Basic/SFBase/"
   SFBusiness:
-    :path: "../"
+    :path: "../../../Business/SFBusiness/"
+  SFExtension:
+    :path: "../../../Basic/SFExtension/"
+  SFLogger:
+    :path: "../../../Server/SFLogger/"
+  SFUI:
+    :path: "../../../UI/SFUI/"
 
 SPEC CHECKSUMS:
-  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  SFBusiness: e0a6c4f4f6382fb515abf38f2dbe5364c38507c2
+  IQKeyboardManagerSwift: 12d89768845bb77b55cc092ecc2b1f9370f06b76
+  Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
+  SFBase: e6ef6e68cee897189e335d6dfdca3415871b14b1
+  SFBusiness: 88a9f431ee2044c3c3562c14cd9ea022faf1a748
+  SFExtension: db5d207c8b9cb15d09d28858aec071d51050f3c5
+  SFLogger: 32dc52852844a0ac9243948c00d64e02cc5a680a
+  SFUI: 9b84518709b64a65be8289aba32d43ca48015229
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SnapKitExtend: aa30cf37196195fae9c4354686cc7710184ebfcc
+  SwiftyBeaver: ade157e4f857812e7d7f15f2e3396bb8733f8a1c
+  Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
+  WCDB.swift: 603b32d432a58ec2e6eef8965d8bd6bb3cc7c39a
+  WCDBOptimizedSQLCipher: c6451e1dead7ec53e1344a2545aaed2c4c139fc0
 
-PODFILE CHECKSUM: fb555d9ed6481801e3e126e01aa92979efeff650
+PODFILE CHECKSUM: 1025494bb40d30db96718bd1f6e634b449b173d8
 
 COCOAPODS: 1.16.2
