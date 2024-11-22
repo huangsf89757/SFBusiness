@@ -41,9 +41,16 @@ TODO: Add long description of the pod here.
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   
+
   # --- 依赖 --- #
+  # Basic
+  s.dependency 'SFBase',                      '~> 0.1.0'
+  s.dependency 'SFExtension',                 '~> 0.1.0'
+  # UI
+  s.dependency 'SFUI',                        '~> 0.1.0'
+  # Server
+  s.dependency 'SFLogger',                    '~> 0.1.0'
   # Third
-  s.dependency 'WCDB.swift',      '~> 2.1.8'
-  
+#  s.dependency 'WCDB.swift',      '~> 2.1.8'
   
 end
