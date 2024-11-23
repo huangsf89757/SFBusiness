@@ -26,7 +26,7 @@ public class SFCopyrightView: SFView {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 10, weight: .regular)
             view.textColor = SFColor.UI.subtitle
-            view.text = String(format: SFText.Business.copyright, SFApp.version, SFApp.build)
+            view.text = String(format: SFText.Business.version, SFApp.version, SFApp.build)
             view.textAlignment = .center
         }
     }()
@@ -34,7 +34,7 @@ public class SFCopyrightView: SFView {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 10, weight: .regular)
             view.textColor = SFColor.UI.subtitle
-//            view.text = R.string.localizable.copyright()
+            view.text = SFText.Business.copyright
             view.textAlignment = .center
         }
     }()

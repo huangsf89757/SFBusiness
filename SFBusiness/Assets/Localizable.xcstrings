@@ -40,6 +40,17 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Copyright @ 2024-2034"
+          }
+        }
+      }
+    },
+    "version" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Version %1$@(%2$@)"
           }
         }
