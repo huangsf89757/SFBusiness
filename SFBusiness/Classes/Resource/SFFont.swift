@@ -1,6 +1,6 @@
 //
 //  SFFont.swift
-//  SFUser
+//  SFBusiness
 //
 //  Created by hsf on 2024/7/26.
 //
@@ -15,8 +15,8 @@ import SFUI
 
 // MARK: - SFFont
 extension SFFont {
-    public struct User {
-        public static var bundle = SFLibUser.bundle
+    public struct Business {
+        public static var bundle = SFBusinessLib.bundle
 //        private static func font(name: String) -> UIImage? {
 //            UIImage.sf.image(name: name, bundle: Self.bundle)
 //        }
