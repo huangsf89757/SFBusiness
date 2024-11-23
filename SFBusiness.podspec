@@ -33,9 +33,9 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'SFBusiness/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'SFBusiness' => ['SFBusiness/Assets/*.png']
-  # }
+   s.resource_bundles = {
+     'SFBusiness' => ['SFBusiness/Assets/**/*']
+   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
@@ -44,8 +44,8 @@ TODO: Add long description of the pod here.
 
   # --- 依赖 --- #
   # Basic
-  s.dependency 'SFBase',                      '~> 0.1.0'
   s.dependency 'SFExtension',                 '~> 0.1.0'
+  s.dependency 'SFBase',                      '~> 0.1.0'
   # UI
   s.dependency 'SFUI',                        '~> 0.1.0'
   # Server

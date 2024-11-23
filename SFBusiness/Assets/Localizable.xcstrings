@@ -1,0 +1,50 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    "agreement" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我已阅读并同意%1$@和%2$@"
+          }
+        }
+      }
+    },
+    "agreement_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私协议"
+          }
+        }
+      }
+    },
+    "agreement_term" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务条款"
+          }
+        }
+      }
+    },
+    "copyright" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %1$@(%2$@)"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
