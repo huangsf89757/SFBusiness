@@ -35,9 +35,8 @@ public class SFAgreementView: SFView {
     public private(set) lazy var titleLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 12, weight: .regular)
-//            view.textColor = SFColor.UI.subtitle
-//            let text = R.string.localizable.user_signIn_agreement(R.string.localizable.user_signIn_agreement_term(), R.string.localizable.user_signIn_agreement_policy())
-//            view.text = text
+            view.textColor = SFColor.UI.subtitle
+            view.text = String(format: SFText.Business.agreement, SFText.Business.agreement_policy, SFText.Business.agreement_term)
         }
     }()
     

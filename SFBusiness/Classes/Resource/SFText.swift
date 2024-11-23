@@ -21,7 +21,10 @@ extension SFText {
             NSLocalizedString(name, bundle: Self.bundle ?? .main, comment: name)
         }
         
-        
+        public static var agreement: String { text(name: "agreement") }
+        public static var agreement_policy: String { text(name: "agreement_policy") }
+        public static var agreement_term: String { text(name: "agreement_term") }
+        public static var copyright: String { text(name: "copyright") }
     }
 }
 

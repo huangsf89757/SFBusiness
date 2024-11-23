@@ -26,7 +26,7 @@ public class SFCopyrightView: SFView {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 10, weight: .regular)
             view.textColor = SFColor.UI.subtitle
-            view.text = String(format: "Version %@(%@)", SFApp.version, SFApp.build)
+            view.text = String(format: SFText.Business.copyright, SFApp.version, SFApp.build)
             view.textAlignment = .center
         }
     }()
