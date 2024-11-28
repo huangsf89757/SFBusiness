@@ -30,12 +30,15 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '14.0'
   s.swift_version = '5.0'
+#  s.pod_target_xcconfig = {
+#    'USE_FRAMEWORKS' => 'YES'
+#  }
 
   s.source_files = 'SFBusiness/Classes/**/*'
   
-   s.resource_bundles = {
-     'SFBusiness' => ['SFBusiness/Assets/**/*']
-   }
+  s.resource_bundles = {
+    'SFBusiness' => ['SFBusiness/Assets/**/*']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

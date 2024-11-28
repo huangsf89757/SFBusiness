@@ -9,5 +9,5 @@ import Foundation
 
 // MARK: - SFDatanable
 public protocol SFDatanable {
-    static var tableName: String {get}
+    static var table: String {get}
 }
