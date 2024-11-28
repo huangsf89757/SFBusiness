@@ -7,10 +7,10 @@
 
 import Foundation
 // Third
-//import WCDBSwift
+import WCDBSwift
 
 // MARK: - SFLocalDataModel
-open class SFLocalDataModel {
+open class SFLocalDataModel: TableCodable {
     // MARK: var
     /// 静态表名
     open class var tableName: String {
@@ -32,20 +32,20 @@ open class SFLocalDataModel {
     /// yyyy/MM/dd HH:mm:ss Z
     public var updateTimeL: String?
     
-//    /// CodingKeys
-//    public enum CodingKeys: String, CodingTableKey {
-//        public typealias Root = SFLocalDataModel
-//        
-//        case orderL
-//        case idL
-//        case createTimeL
-//        case updateTimeL
-//        
-//        public static let objectRelationalMapping = TableBinding(CodingKeys.self) {
-//            BindColumnConstraint(orderL, isPrimary: true, isAutoIncrement: true)
-//            BindColumnConstraint(idL, isNotNull: true, isUnique: true)
-//        }
-//    }
+    /// CodingKeys
+    public enum CodingKeys: String, CodingTableKey {
+        public typealias Root = SFLocalDataModel
+        
+        case orderL
+        case idL
+        case createTimeL
+        case updateTimeL
+        
+        public static let objectRelationalMapping = TableBinding(CodingKeys.self) {
+            BindColumnConstraint(orderL, isPrimary: true, isAutoIncrement: true)
+            BindColumnConstraint(idL, isNotNull: true, isUnique: true)
+        }
+    }
     
     /// 是否自增
     public var isAutoIncrement: Bool = false
