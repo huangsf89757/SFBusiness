@@ -54,6 +54,6 @@ TODO: Add long description of the pod here.
   # Server
   s.dependency 'SFLogger',                    '~> 0.1.0'
   # Third
-  s.dependency 'WCDB.swift'
+  s.dependency 'WCDB.swift',                  '1.1.0' # FIXME: 这不是最新的版本
   
 end
