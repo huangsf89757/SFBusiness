@@ -31,10 +31,10 @@ extension SFApp {
             let environmentUrl = documentsDirectory.appendingPathComponent(SFEnvironment.cur.path)
             let portUrl = environmentUrl.appendingPathComponent(port.path)
             let dataURL = portUrl.appendingPathComponent("data.db")
-            let db = try Database(withFileURL: dataURL)
+            let db = try Database(at: dataURL)
             return db
         } catch {
-            SFDbLogger.dbError(type: .none, msgs: "获取appDb", "失败", error.localizedDescription)
+            SFDbLogger.error(port: port, type: .none, msgs: "获取appDb", "失败", error.localizedDescription)
             return nil
         }
     }
