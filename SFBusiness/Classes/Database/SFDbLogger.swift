@@ -20,44 +20,60 @@ public class SFDbLogger {
     
 }
 extension SFDbLogger {
-    public static func verbose(port: SFPort, type: DbType, msgs: Any...) {
+    public static func verbose(port: SFPort, type: DbType,
+                               file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                               msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.verbose("[DB]\(port.tag)", type.tag, message)
+        SFLogger.verbose(file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
     
-    public static func debug(port: SFPort, type: DbType, msgs: Any...) {
+    public static func debug(port: SFPort, type: DbType,
+                             file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                             msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.debug("[DB]\(port.tag)", type.tag, message)
+        SFLogger.debug(file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
     
-    public static func info(port: SFPort, type: DbType, msgs: Any...) {
+    public static func info(port: SFPort, type: DbType,
+                            file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                            msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.info("[DB]\(port.tag)", type.tag, message)
+        SFLogger.info(file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
     
-    public static func warning(port: SFPort, type: DbType, msgs: Any...) {
+    public static func warning(port: SFPort, type: DbType,
+                               file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                               msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.warning("[DB]\(port.tag)", type.tag, message)
+        SFLogger.warning(file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
         
-    public static func error(port: SFPort, type: DbType, msgs: Any...) {
+    public static func error(port: SFPort, type: DbType,
+                             file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                             msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.error("[DB]\(port.tag)", type.tag, message)
+        SFLogger.error(file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
     
-    public static func critical(port: SFPort, type: DbType, msgs: Any...) {
+    public static func critical(port: SFPort, type: DbType,
+                                file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                                msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.critical("[DB]\(port.tag)", type.tag, message)
+        SFLogger.critical(file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
     
-    public static func fault(port: SFPort, type: DbType, msgs: Any...) {
+    public static func fault(port: SFPort, type: DbType,
+                             file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                             msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.fault("[DB]\(port.tag)", type.tag, message)
+        SFLogger.fault(file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
 
-    public static func custom(level: SwiftyBeaver.Level, port: SFPort, type: DbType, msgs: Any...) {
+    public static func custom(level: SwiftyBeaver.Level, port: SFPort, type: DbType,
+                              file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
+                              msgs: Any...) {
         let message = msgs.map { String(describing: $0) }.joined(separator: " ")
-        SFLogger.custom(level: level, messages: "[DB]\(port.tag)", type.tag, message)
+        SFLogger.custom(level: level, file: file, function: function, line: line, context: context, messages: "[DB]\(port.tag)", type.tag, message)
     }
 }
 
@@ -89,6 +105,8 @@ public enum DbType {
 extension SFPort {
     public var tag: String {
         switch self {
+        case .none:
+            return " "
         case .client:
             return "C"
         case .server:
