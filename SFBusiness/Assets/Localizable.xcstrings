@@ -34,6 +34,28 @@
         }
       }
     },
+    "api_request_failure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请求失败"
+          }
+        }
+      }
+    },
+    "api_request_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请求成功"
+          }
+        }
+      }
+    },
     "copyright" : {
       "extractionState" : "manual",
       "localizations" : {
