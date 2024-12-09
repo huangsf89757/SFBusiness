@@ -26,37 +26,50 @@ public final class SFDataService {
     public var provider: SFDataProvider?
     
     /// 请求数据
-    public func request(loading: String? = nil, success: String? = nil, failure: String? = nil,
-                        apiTask: @escaping (SFDataProvider) async -> SFDataResponse?) {
+    public func request(hud: (loading: String?, success: String?, failure: String?)? = nil,
+                        apiTask: @escaping (SFDataProvider) async -> SFDataResponse?,
+                        success: @escaping (Any?, String?) -> (),
+                        failure: @escaping (String?) -> ()) {
         SFDsLogger.debug(port: .client, step: .start, msgs: "provider=nil")
         guard let provider = provider else {
             SFDsLogger.debug(port: .client, msgs: "provider=nil")
             return
         }
-        let isHud = (loading != nil) || (success != nil) || (failure != nil)
-        isHud ? SFHud.show(.loading, msg: loading) : ()
+        let isHud = hud != nil
+        let msg_loading = hud?.0
+        let msg_success = hud?.1
+        let msg_failure = hud?.2
+        isHud ? SFHud.show(.loading, msg: msg_loading) : ()
         Task {
             let response = await apiTask(provider)
             guard let response = response else {
                 SFDsLogger.debug(port: .client, step: .end(.failure), msgs: "response=nil")
-                isHud ? SFHud.show(.failure, msg: failure) : ()
+                isHud ? SFHud.show(.failure, msg: msg_failure) : ()
                 return
             }
             if response.code == .ok {
                 if response.isSuccess {
-                    let msg = response.message ?? success
-                    isHud ? SFHud.show(.success, msg: msg) : ()
-                    SFDsLogger.debug(port: .client, step: .end(.success), msgs: msg)
+                    let msg = response.message ?? msg_success
+                    didSuccess(response: response, msg: msg)
                 } else {
-                    let msg = response.message ?? failure
-                    isHud ? SFHud.show(.failure, msg: msg) : ()
-                    SFDsLogger.debug(port: .client, step: .end(.failure), msgs: msg)
+                    let msg = response.message ?? msg_failure
+                    didFailure(response: response, msg: msg)
                 }
             } else {
-                let msg = response.message ?? response.code.desc ?? failure
-                isHud ? SFHud.show(.failure, msg: msg) : ()
-                SFDsLogger.debug(port: .client, step: .end(.failure), msgs: msg)
+                let msg = response.message ?? response.code.desc ?? msg_failure
+                didFailure(response: response, msg: msg)
             }
+        }
+        
+        func didSuccess(response: SFDataResponse, msg: String?) {
+            isHud ? SFHud.show(.success, msg: msg) : ()
+            SFDsLogger.debug(port: .client, step: .end(.success), msgs: msg)
+            success(response.data, msg)
+        }
+        func didFailure(response: SFDataResponse, msg: String?) {
+            isHud ? SFHud.show(.failure, msg: msg) : ()
+            SFDsLogger.debug(port: .client, step: .end(.failure), msgs: msg)
+            failure(msg)
         }
     }
 }
