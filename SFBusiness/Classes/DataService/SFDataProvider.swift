@@ -11,6 +11,17 @@ import UIKit
 import SFExtension
 import SFBase
 
+// MARK: - SFDataResponse
+public typealias SFDataResponse = (code: SFDataResponseCode, isSuccess: Bool, data: Any?, message: String?)
+
+// MARK: - SFDataResponseCode
+public enum SFDataResponseCode: Int {
+    case ok = 200
+    case unauthorized = 401
+    case serverError = 500
+    case timeout = 504
+}
+
 // MARK: - SFDataProvider
 public protocol SFDataProvider {
     /// 超时时间
