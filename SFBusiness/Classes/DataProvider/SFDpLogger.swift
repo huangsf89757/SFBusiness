@@ -1,5 +1,5 @@
 //
-//  SFDsLogger.swift
+//  SFDpLogger.swift
 //  SFBusiness
 //
 //  Created by hsf on 2024/12/9.
@@ -15,12 +15,12 @@ import SFLogger
 // Third
 import SwiftyBeaver
 
-// MARK: - SFDsLogger
-public class SFDsLogger {
-    public static let special = "[DS]"
+// MARK: - SFDpLogger
+public class SFDpLogger {
+    public static let special = "[DP]"
 }
 
-extension SFDsLogger {
+extension SFDpLogger {
     @discardableResult
     private static func custom(level: SwiftyBeaver.Level,
                                file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
@@ -36,7 +36,7 @@ extension SFDsLogger {
 }
 
 // MARK: - 可变参数版本
-extension SFDsLogger {
+extension SFDpLogger {
     @discardableResult
     public static func verbose(file: String = #file, function: String = #function, line: Int = #line, context: Any? = nil,
                                port: SFPort, tag: String? = nil, step: SFLogStep? = nil,

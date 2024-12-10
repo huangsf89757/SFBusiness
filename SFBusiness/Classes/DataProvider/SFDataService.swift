@@ -30,21 +30,23 @@ public final class SFDataService {
                         apiTask: @escaping (SFDataProvider) async -> SFDataResponse?,
                         success: @escaping (Any?, String?) -> (),
                         failure: @escaping (String?) -> ()) {
-        SFDsLogger.debug(port: .client, step: .start, msgs: "provider=nil")
+        SFDpLogger.debug(port: .client, step: .start, msgs: "provider=nil")
         guard let provider = provider else {
-            SFDsLogger.debug(port: .client, msgs: "provider=nil")
+            SFDpLogger.debug(port: .client, msgs: "provider=nil")
             return
         }
         let isHud = hud != nil
-        let msg_loading = hud?.0
-        let msg_success = hud?.1
-        let msg_failure = hud?.2
+        let msg_loading = hud?.loading
+        let msg_success = hud?.success
+        let msg_failure = hud?.failure
         isHud ? SFHud.show(.loading, msg: msg_loading) : ()
         Task {
             let response = await apiTask(provider)
             guard let response = response else {
-                SFDsLogger.debug(port: .client, step: .end(.failure), msgs: "response=nil")
-                isHud ? SFHud.show(.failure, msg: msg_failure) : ()
+                SFDpLogger.debug(port: .client, step: .end(.failure), msgs: "response=nil")
+                let msg = msg_failure
+                isHud ? SFHud.show(.failure, msg: msg) : ()
+                failure(msg)
                 return
             }
             if response.code == .ok {
@@ -63,12 +65,12 @@ public final class SFDataService {
         
         func didSuccess(response: SFDataResponse, msg: String?) {
             isHud ? SFHud.show(.success, msg: msg) : ()
-            SFDsLogger.debug(port: .client, step: .end(.success), msgs: msg)
+            SFDpLogger.debug(port: .client, step: .end(.success), msgs: msg)
             success(response.data, msg)
         }
         func didFailure(response: SFDataResponse, msg: String?) {
             isHud ? SFHud.show(.failure, msg: msg) : ()
-            SFDsLogger.debug(port: .client, step: .end(.failure), msgs: msg)
+            SFDpLogger.debug(port: .client, step: .end(.failure), msgs: msg)
             failure(msg)
         }
     }
