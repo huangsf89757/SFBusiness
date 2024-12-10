@@ -65,12 +65,12 @@ public final class SFDataService {
         
         func didSuccess(response: SFDataResponse, msg: String?) {
             isHud ? SFHud.show(.success, msg: msg) : ()
-            SFDpLogger.debug(port: .client, step: .end(.success), msgs: msg)
+            SFDpLogger.debug(port: .client, step: .end(.success), msgs: msg ?? "")
             success(response.data, msg)
         }
         func didFailure(response: SFDataResponse, msg: String?) {
             isHud ? SFHud.show(.failure, msg: msg) : ()
-            SFDpLogger.debug(port: .client, step: .end(.failure), msgs: msg)
+            SFDpLogger.debug(port: .client, step: .end(.failure), msgs: msg ?? "请求失败")
             failure(msg)
         }
     }
