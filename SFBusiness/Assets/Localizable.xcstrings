@@ -12,6 +12,17 @@
         }
       }
     },
+    "agreement_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请先阅读并同意%1$@和%2$@"
+          }
+        }
+      }
+    },
     "agreement_policy" : {
       "extractionState" : "manual",
       "localizations" : {
