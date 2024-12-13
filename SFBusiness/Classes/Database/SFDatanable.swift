@@ -8,6 +8,6 @@
 import Foundation
 
 // MARK: - SFDatanable
-public protocol SFDatanable {
+public protocol SFDatanable: class {
     static var table: String {get}
 }

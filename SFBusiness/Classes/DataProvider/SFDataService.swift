@@ -28,7 +28,7 @@ public final class SFDataService {
     /// 请求数据
     public func request(hud: (loading: String?, success: String?, failure: String?)? = nil,
                         apiTask: @escaping (SFDataProvider) async -> SFDataResponse?) async -> SFDataResponse {
-        SFDpLogger.debug(port: .client, step: .start, msgs: "provider=nil")
+        SFDpLogger.debug(port: .client, step: .begin, msgs: "provider=nil")
         guard let provider = provider else {
             SFDpLogger.debug(port: .client, msgs: "provider=nil")
             return (false, .serverError, nil, "provider=nil")

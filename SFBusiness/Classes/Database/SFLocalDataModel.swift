@@ -58,7 +58,7 @@ extension SFLocalDatanable {
 }
 
 extension SFLocalDatanable {
-    public mutating func defaultL() {
+    public func defaultL() {
         orderL = 0
         idL = UUID().uuidString
         createDateL = Date()
