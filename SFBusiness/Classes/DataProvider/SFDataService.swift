@@ -27,11 +27,11 @@ public final class SFDataService {
     
     /// 请求数据
     public func request(hud: (loading: String?, success: String?, failure: String?)? = nil,
-                        apiTask: @escaping (SFDataProvider) async -> SFDataResponse?) async -> (success: Bool ,data: Any?, msg: String?) {
+                        apiTask: @escaping (SFDataProvider) async -> SFDataResponse?) async -> SFDataResponse {
         SFDpLogger.debug(port: .client, step: .start, msgs: "provider=nil")
         guard let provider = provider else {
             SFDpLogger.debug(port: .client, msgs: "provider=nil")
-            return (false, nil, "provider=nil")
+            return (false, .serverError, nil, "provider=nil")
         }
         let isHud = hud != nil
         let msg_loading = hud?.loading
@@ -43,7 +43,7 @@ public final class SFDataService {
             SFDpLogger.debug(port: .client, step: .end(.failure), msgs: "response=nil")
             let msg = msg_failure
             isHud ? SFHud.show(.failure, msg: msg) : ()
-            return (false, nil, msg)
+            return (false, .badRequest, nil, msg)
         }
         if response.code == .ok {
             if response.success {
@@ -58,15 +58,15 @@ public final class SFDataService {
             return await didFailure(response: response, msg: msg)
         }
         
-        func didSuccess(response: SFDataResponse, msg: String?) async -> (Bool ,Any?, String?) {
+        func didSuccess(response: SFDataResponse, msg: String?) async -> SFDataResponse {
             isHud ? SFHud.show(.success, msg: msg, stay: 2) : ()
             SFDpLogger.debug(port: .client, step: .end(.success), msgs: msg ?? "")
-            return (true, response.data, msg)
+            return (true, response.code, response.data, msg)
         }
-        func didFailure(response: SFDataResponse, msg: String?) async -> (Bool ,Any?, String?) {
+        func didFailure(response: SFDataResponse, msg: String?) async -> SFDataResponse {
             isHud ? SFHud.show(.failure, msg: msg, stay: 2) : ()
             SFDpLogger.debug(port: .client, step: .end(.failure), msgs: msg ?? "请求失败")
-            return (false, response.data, msg)
+            return (false, response.code, response.data, msg)
         }
     }
 }
