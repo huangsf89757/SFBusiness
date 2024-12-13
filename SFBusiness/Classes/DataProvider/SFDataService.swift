@@ -40,7 +40,7 @@ public final class SFDataService {
         isHud ? SFHud.show(.loading, msg: msg_loading) : ()
         let response = await apiTask(provider)
         guard let response = response else {
-            SFDpLogger.debug(port: .client, step: .end(.failure), msgs: "response=nil")
+            SFDpLogger.debug(port: .client, step: .failure, msgs: "response=nil")
             let msg = msg_failure
             isHud ? SFHud.show(.failure, msg: msg) : ()
             return (false, .badRequest, nil, msg)
@@ -60,12 +60,12 @@ public final class SFDataService {
         
         func didSuccess(response: SFDataResponse, msg: String?) async -> SFDataResponse {
             isHud ? SFHud.show(.success, msg: msg, stay: 2) : ()
-            SFDpLogger.debug(port: .client, step: .end(.success), msgs: msg ?? "")
+            SFDpLogger.debug(port: .client, step: .success, msgs: msg ?? "")
             return (true, response.code, response.data, msg)
         }
         func didFailure(response: SFDataResponse, msg: String?) async -> SFDataResponse {
             isHud ? SFHud.show(.failure, msg: msg, stay: 2) : ()
-            SFDpLogger.debug(port: .client, step: .end(.failure), msgs: msg ?? "请求失败")
+            SFDpLogger.debug(port: .client, step: .failure, msgs: msg ?? "请求失败")
             return (false, response.code, response.data, msg)
         }
     }

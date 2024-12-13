@@ -27,10 +27,10 @@ extension SFDpLogger {
                                port: SFPort, tag: String? = nil, step: SFLogStep? = nil,
                                message: Any) -> SFLogInfo {
         var specialTag = special
-        if let tag = tag {
-            specialTag += tag
-        }
         specialTag += port.tag
+        if let tag = tag {
+            specialTag += " \(tag)"
+        }
         return SFLogger.custom(level: level, file: file, function: function, line: line, context: context, tag: specialTag, step: step, msgs: message)
     }
 }

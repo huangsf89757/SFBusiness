@@ -29,11 +29,11 @@ extension SFDbLogger {
                                port: SFPort, type: DbType,
                                message: Any) -> SFLogInfo {
         var specialTag = special
-        if let tag = tag {
-            specialTag += tag
-        }
         specialTag += port.tag
         specialTag += type.tag
+        if let tag = tag {
+            specialTag += " \(tag)"
+        }
         return SFLogger.custom(level: level, file: file, function: function, line: line, context: context, tag: specialTag, step: step, msgs: message)
     }
 }
