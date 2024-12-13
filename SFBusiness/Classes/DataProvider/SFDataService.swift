@@ -27,57 +27,52 @@ public final class SFDataService {
     
     /// 请求数据
     public func request(hud: (loading: String?, success: String?, failure: String?)? = nil,
-                        apiTask: @escaping (SFDataProvider) async -> SFDataResponse?,
-                        success: @escaping (Any?, String?) -> (),
-                        failure: @escaping (String?) -> ()) {
+                        apiTask: @escaping (SFDataProvider) async -> SFDataResponse?) async -> (success: Bool ,data: Any?, msg: String?) {
         SFDpLogger.debug(port: .client, step: .start, msgs: "provider=nil")
         guard let provider = provider else {
             SFDpLogger.debug(port: .client, msgs: "provider=nil")
-            return
+            return (false, nil, "provider=nil")
         }
         let isHud = hud != nil
         let msg_loading = hud?.loading
         let msg_success = hud?.success
         let msg_failure = hud?.failure
         isHud ? SFHud.show(.loading, msg: msg_loading) : ()
-        Task {
-            let response = await apiTask(provider)
-            guard let response = response else {
-                SFDpLogger.debug(port: .client, step: .end(.failure), msgs: "response=nil")
-                let msg = msg_failure
-                isHud ? SFHud.show(.failure, msg: msg) : ()
-                failure(msg)
-                return
-            }
-            if response.code == .ok {
-                if response.isSuccess {
-                    let msg = response.message ?? msg_success
-                    didSuccess(response: response, msg: msg)
-                } else {
-                    let msg = response.message ?? msg_failure
-                    didFailure(response: response, msg: msg)
-                }
+        let response = await apiTask(provider)
+        guard let response = response else {
+            SFDpLogger.debug(port: .client, step: .end(.failure), msgs: "response=nil")
+            let msg = msg_failure
+            isHud ? SFHud.show(.failure, msg: msg) : ()
+            return (false, nil, msg)
+        }
+        if response.code == .ok {
+            if response.success {
+                let msg = response.message ?? msg_success
+                return await didSuccess(response: response, msg: msg)
             } else {
-                let msg = response.message ?? response.code.desc ?? msg_failure
-                didFailure(response: response, msg: msg)
+                let msg = response.message ?? msg_failure
+                return await didFailure(response: response, msg: msg)
             }
+        } else {
+            let msg = response.message ?? response.code.desc ?? msg_failure
+            return await didFailure(response: response, msg: msg)
         }
         
-        func didSuccess(response: SFDataResponse, msg: String?) {
+        func didSuccess(response: SFDataResponse, msg: String?) async -> (Bool ,Any?, String?) {
             isHud ? SFHud.show(.success, msg: msg, stay: 2) : ()
             SFDpLogger.debug(port: .client, step: .end(.success), msgs: msg ?? "")
-            success(response.data, msg)
+            return (true, response.data, msg)
         }
-        func didFailure(response: SFDataResponse, msg: String?) {
+        func didFailure(response: SFDataResponse, msg: String?) async -> (Bool ,Any?, String?) {
             isHud ? SFHud.show(.failure, msg: msg, stay: 2) : ()
             SFDpLogger.debug(port: .client, step: .end(.failure), msgs: msg ?? "请求失败")
-            failure(msg)
+            return (false, response.data, msg)
         }
     }
 }
 
 // MARK: - SFDataResponse
-public typealias SFDataResponse = (code: SFDataResponseCode, isSuccess: Bool, data: Any?, message: String?)
+public typealias SFDataResponse = (success: Bool, code: SFDataResponseCode, data: Any?, message: String?)
 
 // MARK: - SFDataResponseCode
 public enum SFDataResponseCode: Int {
