@@ -58,7 +58,7 @@ extension SFRemoteDatanable {
 }
 
 extension SFRemoteDatanable {
-    public mutating func defaultR() {
+    public func defaultR() {
         orderR = 0
         idR = UUID().uuidString
         createDateR = Date()
