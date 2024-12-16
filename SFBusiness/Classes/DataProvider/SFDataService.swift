@@ -91,7 +91,7 @@ public enum SFDataResponseCode: Int {
         case .unauthorized:
             return "Unauthorized access."
         case .serverError:
-            return "Server encountered an error."
+            return "Server error."
         case .timeout:
             return "Request timed out."
         }
