@@ -55,5 +55,6 @@ TODO: Add long description of the pod here.
   s.dependency 'SFLogger',                    '~> 0.1.0'
   # Third
   s.dependency 'WCDB.swift'
+  s.dependency 'SwiftyJSON'
   
 end
