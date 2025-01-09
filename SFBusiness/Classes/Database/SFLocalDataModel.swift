@@ -13,7 +13,7 @@ import SFBase
 public protocol SFLocalDatanable: SFDatanable {
     /// 序号
     /// 自增索引
-    var orderL: Int {set get}
+    var orderL: Int? {set get}
     
     /// 唯一标识
     /// MD5
@@ -44,14 +44,5 @@ extension SFLocalDatanable {
         set {
             updateTimeL = SFDateFormatter.yyyyMMddHHmmssZ.string(from: newValue)
         }
-    }
-}
-
-extension SFLocalDatanable {
-    public func defaultL() {
-        orderL = 0
-        idL = UUID().uuidString
-        createDateL = Date()
-        updateDateL = Date()
     }
 }
